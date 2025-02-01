@@ -87,64 +87,105 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     style: greyTextStyle.copyWith(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: currentIndex == 2 ? 38 : 50,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        height: 12,
-                        width: 12,
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                          color: currentIndex == 0
-                              ? blueColor
-                              : lightBackgroundColor,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      Container(
-                        height: 12,
-                        width: 12,
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                          color: currentIndex == 1
-                              ? blueColor
-                              : lightBackgroundColor,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      Container(
-                        height: 12,
-                        width: 12,
-                        margin: const EdgeInsets.only(right: 10),
-                        decoration: BoxDecoration(
-                          color: currentIndex == 2
-                              ? blueColor
-                              : lightBackgroundColor,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        height: 50,
-                        width: 150,
-                        child: TextButton(
-                            onPressed: () {
-                              carouselSliderController.nextPage();
-                            },
-                            style: TextButton.styleFrom(
-                                backgroundColor: purpleColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(56))),
-                            child: Text(
-                              'Continue',
-                              style: whiteTextStyle.copyWith(
-                                  fontSize: 16, fontWeight: semiBold),
-                            )),
-                      )
-                    ],
-                  )
+                  currentIndex == 2
+                      ? Column(
+                          children: [
+                            SizedBox(
+                              height: 50,
+                              width: double.infinity,
+                              child: TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                      backgroundColor: purpleColor,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(56))),
+                                  child: Text(
+                                    'Get Started',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 16, fontWeight: semiBold),
+                                  )),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              height: 50,
+                              width: double.infinity,
+                              child: TextButton(
+                                  onPressed: () {},
+                                  style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(56))),
+                                  child: Text(
+                                    'Sign In',
+                                    style: greyTextStyle.copyWith(
+                                      fontSize: 16,
+                                    ),
+                                  )),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            Container(
+                              height: 12,
+                              width: 12,
+                              margin: const EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                color: currentIndex == 0
+                                    ? blueColor
+                                    : lightBackgroundColor,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            Container(
+                              height: 12,
+                              width: 12,
+                              margin: const EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                color: currentIndex == 1
+                                    ? blueColor
+                                    : lightBackgroundColor,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            Container(
+                              height: 12,
+                              width: 12,
+                              margin: const EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                color: currentIndex == 2
+                                    ? blueColor
+                                    : lightBackgroundColor,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              height: 50,
+                              width: 150,
+                              child: TextButton(
+                                  onPressed: () {
+                                    carouselSliderController.nextPage();
+                                  },
+                                  style: TextButton.styleFrom(
+                                      backgroundColor: purpleColor,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(56))),
+                                  child: Text(
+                                    'Continue',
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 16, fontWeight: semiBold),
+                                  )),
+                            )
+                          ],
+                        )
                 ],
               ),
             )
