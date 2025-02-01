@@ -2,8 +2,29 @@ import 'package:bank_sha/shared/theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
+
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  int currentIndex = 0;
+  CarouselSliderController carouselSliderController =
+      CarouselSliderController();
+
+  List<String> titles = [
+    'Grow Your\nFinancial Today',
+    'Build From\nZero to Freedom',
+    'Start Together'
+  ];
+
+  List<String> subtitles = [
+    'Our system is helping you to\nachieve a better goal',
+    'We provide tips for you so that\nyou can adapt easier',
+    'We will guide you to where\nyou wanted it too'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -14,24 +35,31 @@ class OnboardingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CarouselSlider(
-                items: [
-                  Image.asset(
-                    'assets/img_onboarding1.png',
-                    height: 331,
-                  ),
-                  Image.asset(
-                    'assets/img_onboarding2.png',
-                    height: 331,
-                  ),
-                  Image.asset(
-                    'assets/img_onboarding3.png',
-                    height: 331,
-                  ),
-                ],
-                options: CarouselOptions(
-                    height: 331,
-                    enableInfiniteScroll: false,
-                    viewportFraction: 1)),
+              items: [
+                Image.asset(
+                  'assets/img_onboarding1.png',
+                  height: 331,
+                ),
+                Image.asset(
+                  'assets/img_onboarding2.png',
+                  height: 331,
+                ),
+                Image.asset(
+                  'assets/img_onboarding3.png',
+                  height: 331,
+                ),
+              ],
+              carouselController: carouselSliderController,
+              options: CarouselOptions(
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  height: 331,
+                  enableInfiniteScroll: false,
+                  viewportFraction: 1),
+            ),
             const SizedBox(
               height: 80,
             ),
@@ -44,7 +72,7 @@ class OnboardingPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Grow Your\nFinancial Today',
+                    titles[currentIndex],
                     style: blackTextStyle.copyWith(
                       fontSize: 20,
                       fontWeight: bold,
@@ -55,7 +83,7 @@ class OnboardingPage extends StatelessWidget {
                     height: 26,
                   ),
                   Text(
-                    'Our system is helping you to\nachieve a better goal',
+                    subtitles[currentIndex],
                     style: greyTextStyle.copyWith(fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
@@ -69,7 +97,9 @@ class OnboardingPage extends StatelessWidget {
                         width: 12,
                         margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
-                          color: blueColor,
+                          color: currentIndex == 0
+                              ? blueColor
+                              : lightBackgroundColor,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -78,7 +108,9 @@ class OnboardingPage extends StatelessWidget {
                         width: 12,
                         margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
-                          color: lightBackgroundColor,
+                          color: currentIndex == 1
+                              ? blueColor
+                              : lightBackgroundColor,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -87,7 +119,9 @@ class OnboardingPage extends StatelessWidget {
                         width: 12,
                         margin: const EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
-                          color: lightBackgroundColor,
+                          color: currentIndex == 2
+                              ? blueColor
+                              : lightBackgroundColor,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -96,7 +130,9 @@ class OnboardingPage extends StatelessWidget {
                         height: 50,
                         width: 150,
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              carouselSliderController.nextPage();
+                            },
                             style: TextButton.styleFrom(
                                 backgroundColor: purpleColor,
                                 shape: RoundedRectangleBorder(
