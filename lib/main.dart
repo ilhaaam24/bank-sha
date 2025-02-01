@@ -9,6 +9,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child:
+              Image.asset(width: 200, height: 200, 'assets/img_logo_light.png'),
+        ),
+      ),
+    );
   }
 }
