@@ -1,4 +1,4 @@
-import 'package:bank_sha/pages/splash_page.dart';
+import 'package:bank_sha/ui/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +11,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        debugShowCheckedModeBanner: false, home: splashPage());
+        debugShowCheckedModeBanner: false, home: SplashPage());
   }
 }
