@@ -1,4 +1,4 @@
-import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,15 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-            child: Text(
-          'Halo Semuaaa',
-          style: blackTextStyle.copyWith(fontSize: 30),
-        )),
-      ),
-    );
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false, home: splashPage());
   }
 }
