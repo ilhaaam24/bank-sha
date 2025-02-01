@@ -1,3 +1,4 @@
+import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,11 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child:
-              Image.asset(width: 200, height: 200, 'assets/img_logo_light.png'),
-        ),
+            child: Text(
+          'Halo Semuaaa',
+          style: blackTextStyle.copyWith(fontSize: 30),
+        )),
       ),
     );
   }
