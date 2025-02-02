@@ -98,29 +98,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               title: 'Get Started',
                               height: 50,
                               width: double.infinity,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/sign-up');
+                              },
                             ),
                             const SizedBox(
                               height: 20,
                             ),
-                            SizedBox(
-                              height: 50,
-                              width: double.infinity,
-                              child: TextButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/sign-in');
-                                  },
-                                  style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(56))),
-                                  child: Text(
-                                    'Sign In',
-                                    style: greyTextStyle.copyWith(
-                                      fontSize: 16,
-                                    ),
-                                  )),
-                            ),
+                            CustomTextButton(
+                              title: 'Sign In',
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/sign-in');
+                              },
+                            )
                           ],
                         )
                       : Row(
