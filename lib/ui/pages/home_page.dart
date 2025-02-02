@@ -8,44 +8,64 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightBackgroundColor,
-      bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: blueColor,
-          unselectedItemColor: blackColor,
-          showUnselectedLabels: true,
-          unselectedLabelStyle:
-              blackTextStyle.copyWith(fontSize: 10, fontWeight: medium),
-          showSelectedLabels: true,
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/ic_overview.png',
-                width: 20,
-                color: blueColor,
+      bottomNavigationBar: BottomAppBar(
+        color: whiteColor,
+        elevation: 0,
+        shape: const CircularNotchedRectangle(),
+        clipBehavior: Clip.antiAlias,
+        notchMargin: 6,
+        child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: whiteColor,
+            elevation: 0,
+            selectedItemColor: blueColor,
+            unselectedItemColor: blackColor,
+            showUnselectedLabels: true,
+            unselectedLabelStyle:
+                blackTextStyle.copyWith(fontSize: 10, fontWeight: medium),
+            showSelectedLabels: true,
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/ic_overview.png',
+                  width: 20,
+                  color: blueColor,
+                ),
+                label: 'Overview',
               ),
-              label: 'Overview',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/ic_history.png',
-                width: 20,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/ic_history.png',
+                  width: 20,
+                ),
+                label: 'History',
               ),
-              label: 'History',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/ic_statistic.png',
-                width: 20,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/ic_statistic.png',
+                  width: 20,
+                ),
+                label: 'Statistic',
               ),
-              label: 'Statistic',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/ic_reward.png',
-                width: 20,
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  'assets/ic_reward.png',
+                  width: 20,
+                ),
+                label: 'Reward',
               ),
-              label: 'Reward',
-            ),
-          ]),
+            ]),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: purpleColor,
+        shape: const StadiumBorder(),
+        onPressed: () {},
+        child: Image.asset(
+          'assets/ic_plus_circle.png',
+          width: 24,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
