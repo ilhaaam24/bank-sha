@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        children: [buildProfile(), buildWalletCard()],
+        children: [buildProfile(), buildWalletCard(), buildLevel()],
       ),
     );
   }
@@ -157,6 +157,48 @@ class HomePage extends StatelessWidget {
           Text(
             'Rp 12.500',
             style: whiteTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildLevel() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: whiteColor),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                'Level 1',
+                style: blackTextStyle.copyWith(fontWeight: medium),
+              ),
+              const Spacer(),
+              Text(
+                '55%',
+                style: greenTextStyle.copyWith(fontWeight: semiBold),
+              ),
+              Text(
+                'of Rp 20.000',
+                style: blackTextStyle.copyWith(fontWeight: semiBold),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(55),
+            child: LinearProgressIndicator(
+              minHeight: 5,
+              value: 0.55,
+              valueColor: AlwaysStoppedAnimation(greenColor),
+              backgroundColor: lightBackgroundColor,
+            ),
           )
         ],
       ),
