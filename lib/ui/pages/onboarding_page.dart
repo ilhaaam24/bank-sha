@@ -1,5 +1,6 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/pages/sign_in_page.dart';
+import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -94,21 +95,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   currentIndex == 2
                       ? Column(
                           children: [
-                            SizedBox(
+                            CustomFilledButton(
+                              title: 'Get Started',
                               height: 50,
                               width: double.infinity,
-                              child: TextButton(
-                                  onPressed: () {},
-                                  style: TextButton.styleFrom(
-                                      backgroundColor: purpleColor,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(56))),
-                                  child: Text(
-                                    'Get Started',
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 16, fontWeight: semiBold),
-                                  )),
+                              onPressed: () {},
                             ),
                             const SizedBox(
                               height: 20,
@@ -173,23 +164,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
                               ),
                             ),
                             const Spacer(),
-                            SizedBox(
+                            CustomFilledButton(
+                              title: 'Continue',
+                              onPressed: () {
+                                carouselSliderController.nextPage();
+                              },
                               height: 50,
                               width: 150,
-                              child: TextButton(
-                                  onPressed: () {
-                                    carouselSliderController.nextPage();
-                                  },
-                                  style: TextButton.styleFrom(
-                                      backgroundColor: purpleColor,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(56))),
-                                  child: Text(
-                                    'Continue',
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 16, fontWeight: semiBold),
-                                  )),
                             )
                           ],
                         )
