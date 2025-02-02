@@ -68,16 +68,14 @@ class HomePage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        children: [
-          buildProfile(),
-        ],
+        children: [buildProfile(), buildWalletCard()],
       ),
     );
   }
 
   Widget buildProfile() {
     return Container(
-      margin: const EdgeInsets.only(top: 100),
+      margin: const EdgeInsets.only(top: 50),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -118,6 +116,47 @@ class HomePage extends StatelessWidget {
                       child: Icon(Icons.check_circle,
                           color: greenColor, size: 14))),
             ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildWalletCard() {
+    return Container(
+      height: 220,
+      width: double.infinity,
+      margin: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: const DecorationImage(
+              image: AssetImage('assets/img_bg_card.png'), fit: BoxFit.cover)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Shayna Hanna',
+            style: whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
+          ),
+          const SizedBox(
+            height: 28,
+          ),
+          Text(
+            '1234 5678 9012 3456',
+            style: whiteTextStyle.copyWith(
+                fontSize: 18, fontWeight: medium, letterSpacing: 6),
+          ),
+          const SizedBox(
+            height: 21,
+          ),
+          Text(
+            'Balance',
+            style: whiteTextStyle,
+          ),
+          Text(
+            'Rp 12.500',
+            style: whiteTextStyle.copyWith(fontSize: 24, fontWeight: semiBold),
           )
         ],
       ),
