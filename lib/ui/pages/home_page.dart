@@ -323,7 +323,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(
             height: 14,
-          ), 
+          ),
           const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -358,7 +358,7 @@ class HomePage extends StatelessWidget {
             HomeTipsItem(
                 imageUrl: 'assets/img_tips1.png',
                 title: 'Best tips for using a credit card',
-                url: 'https://www.google.com/'),
+                url: ''),
             HomeTipsItem(
                 imageUrl: 'assets/img_tips1.png',
                 title: 'Best tips for using a credit card',
