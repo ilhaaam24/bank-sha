@@ -3,15 +3,15 @@ import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:bank_sha/ui/widget/forms.dart';
 import 'package:flutter/material.dart';
 
-class ProfileEditPage extends StatelessWidget {
-  const ProfileEditPage({super.key});
+class ProfileEditPinPage extends StatelessWidget {
+  const ProfileEditPinPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightBackgroundColor,
       appBar: AppBar(
-        title: const Text('Edit Photo'),
+        title: const Text('Edit Pin'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -25,23 +25,11 @@ class ProfileEditPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomFormField(title: 'Username'),
+              const CustomFormField(title: 'Old PIN'),
               const SizedBox(
                 height: 16,
               ), // NOTE : PASSWORD INPUT
-              const CustomFormField(title: 'Full Name'),
-              const SizedBox(
-                height: 16,
-              ), // NOTE : PASSWORD INPUT
-              const CustomFormField(title: 'Email Address'),
-              const SizedBox(
-                height: 16,
-              ), // NOTE : PASSWORD INPUT
-              const CustomFormField(
-                title: 'Password',
-                obscureText: true,
-              ),
-
+              const CustomFormField(title: 'New PIN'),
               const SizedBox(
                 height: 30,
               ),
