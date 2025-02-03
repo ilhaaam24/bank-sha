@@ -9,14 +9,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       appBar: AppBar(
-        backgroundColor: lightBackgroundColor,
-        iconTheme: IconThemeData(color: blackColor),
-        centerTitle: true,
-        title: Text(
+        title: const Text(
           'My Profile',
-          style: blackTextStyle.copyWith(fontSize: 20, fontWeight: semiBold),
         ),
       ),
       body: ListView(
