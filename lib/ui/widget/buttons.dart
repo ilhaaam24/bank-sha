@@ -65,3 +65,27 @@ class CustomTextButton extends StatelessWidget {
     );
   }
 }
+
+class InputButton extends StatelessWidget {
+  final String number;
+  final VoidCallback? onTap;
+  const InputButton({super.key, required this.number, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 60,
+        width: 60,
+        decoration: BoxDecoration(shape: BoxShape.circle, color: greyColor),
+        child: Center(
+          child: Text(
+            number,
+            style: whiteTextStyle.copyWith(fontSize: 22, fontWeight: semiBold),
+          ),
+        ),
+      ),
+    );
+  }
+}
