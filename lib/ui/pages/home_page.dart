@@ -1,6 +1,7 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/home_service_item.dart';
 import 'package:bank_sha/ui/widget/home_transaction_item.dart';
+import 'package:bank_sha/ui/widget/home_user_item.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -59,6 +60,7 @@ class HomePage extends StatelessWidget {
             ]),
       ),
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
         backgroundColor: purpleColor,
         shape: const StadiumBorder(),
         onPressed: () {},
@@ -75,7 +77,8 @@ class HomePage extends StatelessWidget {
           buildWalletCard(),
           buildLevel(),
           buildServices(),
-          buildLatestTracsaction()
+          buildLatestTracsaction(),
+          buildSendAgain()
         ],
       ),
     );
@@ -298,6 +301,33 @@ class HomePage extends StatelessWidget {
                     iconUrl: 'assets/ic_transaction_cat5.png',
                     time: 'Feb 18',
                     amount: '- 12.300.000'),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildSendAgain() {
+    return Container(
+      margin: const EdgeInsets.only(top: 30, bottom: 14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Send Again',
+            style: blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 16),
+          ),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                HomeUserItem(
+                    imageUrl: 'assets/img_friend1.png', name: 'yuanita'),
+                HomeUserItem(imageUrl: 'assets/img_friend2.png', name: 'jani'),
+                HomeUserItem(imageUrl: 'assets/img_friend3.png', name: 'urip'),
+                HomeUserItem(imageUrl: 'assets/img_friend4.png', name: 'masa'),
               ],
             ),
           )
