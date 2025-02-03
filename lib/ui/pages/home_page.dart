@@ -1,4 +1,5 @@
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/widget/home_service_item.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -68,7 +69,12 @@ class HomePage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        children: [buildProfile(), buildWalletCard(), buildLevel()],
+        children: [
+          buildProfile(),
+          buildWalletCard(),
+          buildLevel(),
+          buildServices()
+        ],
       ),
     );
   }
@@ -199,6 +205,49 @@ class HomePage extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation(greenColor),
               backgroundColor: lightBackgroundColor,
             ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildServices() {
+    return Container(
+      margin: const EdgeInsets.only(top: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Do Something',
+            style: blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              HomeServiceItem(
+                title: 'Top Up',
+                iconUrl: 'assets/ic_topup.png',
+                onTap: () {},
+              ),
+              HomeServiceItem(
+                title: 'Send',
+                iconUrl: 'assets/ic_send.png',
+                onTap: () {},
+              ),
+              HomeServiceItem(
+                title: 'Withdraw',
+                iconUrl: 'assets/ic_withdraw.png',
+                onTap: () {},
+              ),
+              HomeServiceItem(
+                title: 'More',
+                iconUrl: 'assets/ic_more.png',
+                onTap: () {},
+              ),
+            ],
           )
         ],
       ),
