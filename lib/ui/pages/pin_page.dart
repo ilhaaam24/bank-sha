@@ -70,58 +70,59 @@ class _PinPageState extends State<PinPage> {
                 height: 66,
               ),
               Wrap(
+                alignment: WrapAlignment.spaceAround,
                 spacing: 40,
                 runSpacing: 40,
                 children: [
-                  InputButton(
+                  CustomInputButton(
                     number: '1',
                     onTap: () {
                       addPin('1');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '2',
                     onTap: () {
                       addPin('2');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '3',
                     onTap: () {
                       addPin('3');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '4',
                     onTap: () {
                       addPin('4');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '5',
                     onTap: () {
                       addPin('5');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '6',
                     onTap: () {
                       addPin('6');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '7',
                     onTap: () {
                       addPin('7');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '8',
                     onTap: () {
                       addPin('8');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '9',
                     onTap: () {
                       addPin('9');
@@ -131,7 +132,7 @@ class _PinPageState extends State<PinPage> {
                     height: 60,
                     width: 60,
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '0',
                     onTap: () {
                       addPin('0');

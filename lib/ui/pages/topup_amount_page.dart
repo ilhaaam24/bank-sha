@@ -10,27 +10,27 @@ class TopupAmountPage extends StatefulWidget {
 }
 
 class _TopupAmountPageState extends State<TopupAmountPage> {
-  final TextEditingController pinController =
-      TextEditingController(text: 'Rp  ');
+  final TextEditingController amountController =
+      TextEditingController(text: '0');
 
-  addNumber(String number) {
-    if (pinController.text.length < 6) {
-      setState(() {
-        pinController.text = pinController.text + number;
-      });
-    }
-    if (pinController.text == '123123') {
-      Navigator.pop(context, true);
-    }
+  addAmount(String number) {
+    setState(() {
+      if (amountController.text == '0') {
+        amountController.text = '';
+      }
+      amountController.text = amountController.text + number;
+    });
   }
 
   deleteNumber() {
-    if (pinController.text.isNotEmpty) {
-      setState(() {
-        pinController.text =
-            pinController.text.substring(0, pinController.text.length - 1);
-      });
-    }
+    setState(() {
+      amountController.text =
+          amountController.text.substring(0, amountController.text.length - 1);
+
+      if (amountController.text == '') {
+        amountController.text = '0';
+      }
+    });
   }
 
   @override
@@ -52,14 +52,19 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
                 height: 72,
               ),
               SizedBox(
-                width: 200,
+                width: 250,
                 child: TextFormField(
                   enabled: false,
-                  controller: pinController,
+                  controller: amountController,
                   style: whiteTextStyle.copyWith(
-                      fontSize: 36, fontWeight: medium, letterSpacing: 6),
+                    fontSize: 36,
+                    fontWeight: medium,
+                  ),
                   showCursor: false,
                   decoration: InputDecoration(
+                    prefixIcon: Text('Rp ',
+                        style: whiteTextStyle.copyWith(
+                            fontSize: 36, fontWeight: semiBold)),
                     disabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: greyColor)),
                   ),
@@ -72,68 +77,68 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
                 spacing: 40,
                 runSpacing: 40,
                 children: [
-                  InputButton(
+                  CustomInputButton(
                     number: '1',
                     onTap: () {
-                      addNumber('1');
+                      addAmount('1');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '2',
                     onTap: () {
-                      addNumber('2');
+                      addAmount('2');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '3',
                     onTap: () {
-                      addNumber('3');
+                      addAmount('3');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '4',
                     onTap: () {
-                      addNumber('4');
+                      addAmount('4');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '5',
                     onTap: () {
-                      addNumber('5');
+                      addAmount('5');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '6',
                     onTap: () {
-                      addNumber('6');
+                      addAmount('6');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '7',
                     onTap: () {
-                      addNumber('7');
+                      addAmount('7');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '8',
                     onTap: () {
-                      addNumber('8');
+                      addAmount('8');
                     },
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '9',
                     onTap: () {
-                      addNumber('9');
+                      addAmount('9');
                     },
                   ),
                   const SizedBox(
                     height: 60,
                     width: 60,
                   ),
-                  InputButton(
+                  CustomInputButton(
                     number: '0',
                     onTap: () {
-                      addNumber('0');
+                      addAmount('0');
                     },
                   ),
                   GestureDetector(

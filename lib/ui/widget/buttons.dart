@@ -66,10 +66,11 @@ class CustomTextButton extends StatelessWidget {
   }
 }
 
-class InputButton extends StatelessWidget {
+class CustomInputButton extends StatelessWidget {
   final String number;
   final VoidCallback? onTap;
-  const InputButton({super.key, required this.number, this.onTap});
+
+  const CustomInputButton({super.key, required this.number, this.onTap});
 
   @override
   Widget build(BuildContext context) {
