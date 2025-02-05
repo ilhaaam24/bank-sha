@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TopupAmountPage extends StatefulWidget {
   const TopupAmountPage({super.key});
@@ -12,6 +16,37 @@ class TopupAmountPage extends StatefulWidget {
 class _TopupAmountPageState extends State<TopupAmountPage> {
   final TextEditingController amountController =
       TextEditingController(text: '0');
+
+  @override
+  void initState() {
+    super.initState();
+
+    amountController.addListener(() {
+      final text = amountController.text;
+
+      // Remove all non-numeric characters (e.g., '.', ',', etc.)
+      final numericText = text.replaceAll(RegExp(r'[^0-9]'), '');
+
+      // Check if the numericText is not empty before parsing
+      if (numericText.isNotEmpty) {
+        final formattedText = NumberFormat.currency(
+          locale: 'id',
+          decimalDigits: 0,
+          symbol: '',
+        ).format(int.parse(numericText));
+
+        // Update the controller value with the formatted text
+        amountController.value = amountController.value.copyWith(
+          text: formattedText,
+        );
+      } else {
+        // If the text is empty, set it to '0'
+        amountController.value = amountController.value.copyWith(
+          text: '0',
+        );
+      }
+    });
+  }
 
   addAmount(String number) {
     setState(() {
@@ -62,7 +97,7 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
                   ),
                   showCursor: false,
                   decoration: InputDecoration(
-                    prefixIcon: Text('Rp ',
+                    prefixIcon: Text('Rp\t',
                         style: whiteTextStyle.copyWith(
                             fontSize: 36, fontWeight: semiBold)),
                     disabledBorder: UnderlineInputBorder(
@@ -165,8 +200,21 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
               ),
               CustomFilledButton(
                 title: 'Checkout Now',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/topup-success');
+                onPressed: () async {
+                  if (await Navigator.pushNamed(context, '/pin') == true) {
+                    // Jalankan launchUrl terlebih dahulu
+                    await launchUrl(Uri.parse('https://demo.midtrans.com/'));
+
+                    // Gunakan Timer untuk menunda navigasi ke topup-success
+                    Timer(const Duration(seconds: 1), () {
+                      // Tunda 1 detik
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/topup-success',
+                        (route) => false,
+                      );
+                    });
+                  }
                 },
               ),
               const SizedBox(
