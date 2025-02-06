@@ -141,7 +141,6 @@ class HomePage extends StatelessWidget {
 
   Widget buildWalletCard() {
     return Container(
-      height: 220,
       width: double.infinity,
       margin: const EdgeInsets.only(top: 30),
       padding: const EdgeInsets.all(30),
@@ -160,9 +159,9 @@ class HomePage extends StatelessWidget {
             height: 28,
           ),
           Text(
-            '1234 5678 9012 3456',
+            '**** **** **** 3456',
             style: whiteTextStyle.copyWith(
-                fontSize: 18, fontWeight: medium, letterSpacing: 6),
+                fontSize: 18, fontWeight: medium, letterSpacing: 5),
           ),
           const SizedBox(
             height: 21,
@@ -260,7 +259,9 @@ class HomePage extends StatelessWidget {
               HomeServiceItem(
                 title: 'More',
                 iconUrl: 'assets/ic_more.png',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/provider');
+                },
               ),
             ],
           )
@@ -374,16 +375,16 @@ class HomePage extends StatelessWidget {
                       title: 'Best tips for using a credit card',
                       url: ''),
                   HomeTipsItem(
-                      imageUrl: 'assets/img_tips1.png',
-                      title: 'Best tips for using a credit card',
+                      imageUrl: 'assets/img_tips2.png',
+                      title: 'Spot the good pie of finance model',
                       url: 'https://www.google.com/'),
                   HomeTipsItem(
-                      imageUrl: 'assets/img_tips1.png',
-                      title: 'Best tips for using a credit card',
+                      imageUrl: 'assets/img_tips3.png',
+                      title: 'Great hack to get better advices',
                       url: 'https://www.google.com/'),
                   HomeTipsItem(
-                      imageUrl: 'assets/img_tips1.png',
-                      title: 'Best tips for using a credit card',
+                      imageUrl: 'assets/img_tips4.png',
+                      title: 'Save more penny buy this instead',
                       url: 'https://www.google.com/'),
                 ]),
           ),

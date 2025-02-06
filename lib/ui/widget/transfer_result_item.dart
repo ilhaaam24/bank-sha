@@ -26,17 +26,17 @@ class TransferResultItem extends StatelessWidget {
       decoration: BoxDecoration(
           color: whiteColor,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: isSelected ? blueColor : whiteColor)),
+          border:
+              Border.all(color: isSelected ? blueColor : whiteColor, width: 2)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 80,
             height: 80,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: AssetImage('assets/img_profile.png'))),
+                image: DecorationImage(image: AssetImage(imgUrl))),
             child: Align(
               alignment: Alignment.topRight,
               child: Container(

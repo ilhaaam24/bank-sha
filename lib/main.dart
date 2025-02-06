@@ -1,11 +1,13 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/pages/home_page.dart';
 import 'package:bank_sha/ui/pages/onboarding_page.dart';
+import 'package:bank_sha/ui/pages/paket_data_page.dart';
 import 'package:bank_sha/ui/pages/pin_page.dart';
 import 'package:bank_sha/ui/pages/profile_edit_page.dart';
 import 'package:bank_sha/ui/pages/profile_edit_pin_page.dart';
 import 'package:bank_sha/ui/pages/profile_edit_success.dart';
 import 'package:bank_sha/ui/pages/profile_page.dart';
+import 'package:bank_sha/ui/pages/provider_page.dart';
 import 'package:bank_sha/ui/pages/sign_in_page.dart';
 import 'package:bank_sha/ui/pages/sign_up_page.dart';
 import 'package:bank_sha/ui/pages/sign_up_set_ktp_page.dart';
@@ -60,6 +62,8 @@ class MyApp extends StatelessWidget {
         '/transfer': (context) => const TransferPage(),
         '/transfer-amount': (context) => const TransferAmountPage(),
         '/transfer-success': (context) => const TransferSuccesPage(),
+        '/provider': (context) => const ProviderPage(),
+        '/paket-data': (context) => const PaketDataPage(),
       },
     );
   }
