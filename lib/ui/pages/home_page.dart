@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
           buildServices(context),
           buildLatestTracsaction(),
           buildSendAgain(),
-          buildTips()
+          buildTips(context)
         ],
       ),
     );
@@ -349,7 +349,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildTips() {
+  Widget buildTips(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 30, bottom: 50),
       child: Column(
@@ -362,24 +362,31 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: 14,
           ),
-          const Wrap(spacing: 17, runSpacing: 18, children: [
-            HomeTipsItem(
-                imageUrl: 'assets/img_tips1.png',
-                title: 'Best tips for using a credit card',
-                url: ''),
-            HomeTipsItem(
-                imageUrl: 'assets/img_tips1.png',
-                title: 'Best tips for using a credit card',
-                url: 'https://www.google.com/'),
-            HomeTipsItem(
-                imageUrl: 'assets/img_tips1.png',
-                title: 'Best tips for using a credit card',
-                url: 'https://www.google.com/'),
-            HomeTipsItem(
-                imageUrl: 'assets/img_tips1.png',
-                title: 'Best tips for using a credit card',
-                url: 'https://www.google.com/'),
-          ]),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: const Wrap(
+                direction: Axis.horizontal,
+                alignment: WrapAlignment.spaceBetween,
+                runSpacing: 16,
+                children: [
+                  HomeTipsItem(
+                      imageUrl: 'assets/img_tips1.png',
+                      title: 'Best tips for using a credit card',
+                      url: ''),
+                  HomeTipsItem(
+                      imageUrl: 'assets/img_tips1.png',
+                      title: 'Best tips for using a credit card',
+                      url: 'https://www.google.com/'),
+                  HomeTipsItem(
+                      imageUrl: 'assets/img_tips1.png',
+                      title: 'Best tips for using a credit card',
+                      url: 'https://www.google.com/'),
+                  HomeTipsItem(
+                      imageUrl: 'assets/img_tips1.png',
+                      title: 'Best tips for using a credit card',
+                      url: 'https://www.google.com/'),
+                ]),
+          ),
         ],
       ),
     );

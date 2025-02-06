@@ -26,7 +26,7 @@ class HomeTipsItem extends StatelessWidget {
       },
       child: Container(
         height: 176,
-        width: MediaQuery.of(context).size.width * 0.428,
+        width: MediaQuery.of(context).size.width * 0.42,
         decoration: BoxDecoration(
             color: whiteColor, borderRadius: BorderRadius.circular(20)),
         child: Column(

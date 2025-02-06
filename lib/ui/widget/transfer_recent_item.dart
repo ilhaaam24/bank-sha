@@ -1,14 +1,14 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 
-class TransferUsersItem extends StatelessWidget {
+class TransferRecentItem extends StatelessWidget {
   final String name;
   final String username;
   final String imgUrl;
 
   final bool isVeriefied;
 
-  const TransferUsersItem(
+  const TransferRecentItem(
       {super.key,
       required this.name,
       required this.username,
