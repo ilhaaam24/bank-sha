@@ -60,12 +60,12 @@ class DataPackagePage extends StatelessWidget {
                     children: [
                       PaketDataItem(
                         kuota: '10GB',
-                        price: '218.000',
+                        price: 218000,
                         isSelected: true,
                       ),
-                      PaketDataItem(kuota: '25GB', price: '420.000'),
-                      PaketDataItem(kuota: '40GB', price: '2.500.000'),
-                      PaketDataItem(kuota: '99GB', price: '5.000.000'),
+                      PaketDataItem(kuota: '25GB', price: 420000),
+                      PaketDataItem(kuota: '40GB', price: 2500000),
+                      PaketDataItem(kuota: '99GB', price: 5000000),
                     ],
                   ),
                 )

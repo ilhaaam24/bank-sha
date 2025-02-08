@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class PaketDataItem extends StatelessWidget {
   final String kuota;
-  final String price;
+  final int price;
   final bool isSelected;
   const PaketDataItem(
       {super.key,
@@ -35,7 +35,7 @@ class PaketDataItem extends StatelessWidget {
             height: 6,
           ),
           Text(
-            formatCurrency(num.parse(price)),
+            formatCurrency(price),
             style: blackTextStyle.copyWith(fontWeight: medium, fontSize: 12),
           ),
         ],
