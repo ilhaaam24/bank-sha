@@ -3,8 +3,8 @@ import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:bank_sha/ui/widget/topup_bank_item.dart';
 import 'package:flutter/material.dart';
 
-class ProviderPage extends StatelessWidget {
-  const ProviderPage({super.key});
+class DataProviderPage extends StatelessWidget {
+  const DataProviderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +96,7 @@ class ProviderPage extends StatelessWidget {
             CustomFilledButton(
               title: 'Continue',
               onPressed: () {
-                Navigator.pushNamed(context, '/paket-data');
+                Navigator.pushNamed(context, '/data-package');
               },
             ),
             const SizedBox(

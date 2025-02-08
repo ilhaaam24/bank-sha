@@ -431,7 +431,7 @@ class MoreService extends StatelessWidget {
                   title: 'Data',
                   iconUrl: 'assets/ic_product_data.png',
                   onTap: () {
-                    Navigator.pushNamed(context, '/provider');
+                    Navigator.pushNamed(context, '/data-provider');
                   },
                 ),
                 HomeServiceItem(

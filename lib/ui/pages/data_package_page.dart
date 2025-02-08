@@ -4,8 +4,8 @@ import 'package:bank_sha/ui/widget/forms.dart';
 import 'package:bank_sha/ui/widget/paket_data_item.dart';
 import 'package:flutter/material.dart';
 
-class PaketDataPage extends StatelessWidget {
-  const PaketDataPage({super.key});
+class DataPackagePage extends StatelessWidget {
+  const DataPackagePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,12 +72,15 @@ class PaketDataPage extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 274,
+              height: 200,
             ),
             CustomFilledButton(
                 title: 'Continue',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/transfer-amount');
+                onPressed: () async {
+                  if (await Navigator.pushNamed(context, '/pin') == true) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/data-success', (route) => false);
+                  }
                 }),
             const SizedBox(
               height: 50,
