@@ -260,7 +260,9 @@ class HomePage extends StatelessWidget {
                 title: 'More',
                 iconUrl: 'assets/ic_more.png',
                 onTap: () {
-                  Navigator.pushNamed(context, '/provider');
+                  showDialog(
+                      context: context,
+                      builder: (context) => const MoreService());
                 },
               ),
             ],
@@ -389,6 +391,78 @@ class HomePage extends StatelessWidget {
                 ]),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MoreService extends StatelessWidget {
+  const MoreService({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      alignment: Alignment.bottomCenter,
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.zero,
+      content: Container(
+        padding: const EdgeInsets.all(30),
+        height: 326,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40),
+            color: lightBackgroundColor),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Do More With Us',
+              style:
+                  blackTextStyle.copyWith(fontSize: 16, fontWeight: semiBold),
+            ),
+            const SizedBox(
+              height: 13,
+            ),
+            Wrap(
+              spacing: 29,
+              runSpacing: 29,
+              children: [
+                HomeServiceItem(
+                  title: 'Data',
+                  iconUrl: 'assets/ic_product_data.png',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/provider');
+                  },
+                ),
+                HomeServiceItem(
+                  title: 'Data',
+                  iconUrl: 'assets/ic_product_water.png',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  title: 'Stream',
+                  iconUrl: 'assets/ic_product_stream.png',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  title: 'Moview',
+                  iconUrl: 'assets/ic_product_movie.png',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  title: 'Food',
+                  iconUrl: 'assets/ic_product_food.png',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  title: 'Travel',
+                  iconUrl: 'assets/ic_product_travel.png',
+                  onTap: () {},
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
