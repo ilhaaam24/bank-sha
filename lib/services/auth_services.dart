@@ -12,7 +12,7 @@ class AuthServices {
       if (res.statusCode == 200) {
         return jsonDecode(res.body)['is_email_exist'];
       } else {
-        return jsonDecode(res.body)['is_email_exist'];
+        return jsonDecode(res.body)['errors'];
       }
     } catch (e) {
       rethrow;
