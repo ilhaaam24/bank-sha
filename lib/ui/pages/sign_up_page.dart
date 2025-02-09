@@ -1,10 +1,42 @@
+import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:bank_sha/ui/widget/forms.dart';
 import 'package:flutter/material.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  // menggunakan final karena lebih aman karena imutable
+  final nameController = TextEditingController(text: '');
+  final emailController = TextEditingController(text: '');
+  final passwordController = TextEditingController(text: '');
+
+  bool validateName() {
+    if (nameController.text.isEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  bool validateEmail() {
+    if (emailController.text.isEmpty) {
+      return true;
+    }
+    return false;
+  }
+
+  bool validatePassword() {
+    if (passwordController.text.isEmpty) {
+      return true;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +69,25 @@ class SignUpPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // NOTE : FULL NAME INPUT
-              const CustomFormField(title: 'Full Name'),
+              CustomFormField(
+                title: 'Full Name',
+                controller: nameController,
+              ),
               // NOTE : EMAIL INPUT
               const SizedBox(
                 height: 16,
               ), // NOTE : PASSWORD INPUT
-              const CustomFormField(title: 'Email Address'),
+              CustomFormField(
+                title: 'Email Address',
+                controller: emailController,
+              ),
               const SizedBox(
                 height: 16,
               ), // NOTE : PASSWORD INPUT
-              const CustomFormField(
+              CustomFormField(
                 title: 'Password',
                 obscureText: true,
+                controller: passwordController,
               ),
 
               const SizedBox(
@@ -57,7 +96,15 @@ class SignUpPage extends StatelessWidget {
               CustomFilledButton(
                   title: 'Continue',
                   onPressed: () {
-                    Navigator.pushNamed(context, '/sign-up-set-profile');
+                    if (validateName()) {
+                      showCustomSnackbar(context, 'Full Name cannot be empty');
+                    } else if (validateEmail()) {
+                      showCustomSnackbar(context, 'Email cannot be empty');
+                    } else if (validatePassword()) {
+                      showCustomSnackbar(context, 'Password cannot be empty');
+                    } else {
+                      Navigator.pushNamed(context, '/sign-up-set-profile');
+                    }
                   }),
             ],
           ),
