@@ -1,13 +1,17 @@
+import 'package:bank_sha/models/sign_up_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:bank_sha/ui/widget/forms.dart';
 import 'package:flutter/material.dart';
 
 class SignUpSetProfilePage extends StatelessWidget {
-  const SignUpSetProfilePage({super.key});
+  final SignUpFormModel data;
+
+  const SignUpSetProfilePage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
+    print(data.toJson());
     return Scaffold(
         body: ListView(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -63,7 +67,7 @@ class SignUpSetProfilePage extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                'Shayna Hanna',
+                data.name.toString(),
                 style:
                     blackTextStyle.copyWith(fontSize: 18, fontWeight: medium),
               ),

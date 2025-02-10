@@ -14,7 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
           final res = await AuthServices().checkEmail(event.email);
 
-          if (res == false) {
+          if (!res) {
             emit(AuthCheckEmailSuccess());
           } else {
             emit(const AuthFailed('Email already exist'));
