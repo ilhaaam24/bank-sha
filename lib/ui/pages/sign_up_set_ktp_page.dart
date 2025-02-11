@@ -1,10 +1,18 @@
+import 'package:bank_sha/models/sign_up_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:flutter/material.dart';
 
-class SignUpSetKtpPage extends StatelessWidget {
-  const SignUpSetKtpPage({super.key});
+class SignUpSetKtpPage extends StatefulWidget {
+  final SignUpFormModel data;
 
+  const SignUpSetKtpPage({super.key, required this.data});
+
+  @override
+  State<SignUpSetKtpPage> createState() => _SignUpSetKtpPageState();
+}
+
+class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
