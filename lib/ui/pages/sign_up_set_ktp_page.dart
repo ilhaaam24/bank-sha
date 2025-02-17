@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:bank_sha/models/sign_up_model.dart';
+import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpSetKtpPage extends StatefulWidget {
   final SignUpFormModel data;
@@ -13,6 +17,15 @@ class SignUpSetKtpPage extends StatefulWidget {
 }
 
 class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
+  XFile? selectedImage;
+
+  bool validate() {
+    if (selectedImage == null) {
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,17 +56,33 @@ class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: 120,
-                width: 120,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: lightBackgroundColor),
-                child: Center(
-                  child: Image.asset(
-                    'assets/ic_upload.png',
-                    height: 32,
-                    width: 32,
-                  ),
+              GestureDetector(
+                onTap: () async {
+                  final image = await selectImage();
+                  setState(() {
+                    selectedImage = image;
+                  });
+                },
+                child: Container(
+                  height: 120,
+                  width: 120,
+                  decoration: BoxDecoration(
+                      image: selectedImage == null
+                          ? null
+                          : DecorationImage(
+                              fit: BoxFit.cover,
+                              image: FileImage(File(selectedImage!.path))),
+                      shape: BoxShape.circle,
+                      color: lightBackgroundColor),
+                  child: selectedImage != null
+                      ? null
+                      : Center(
+                          child: Image.asset(
+                            'assets/ic_upload.png',
+                            height: 32,
+                            width: 32,
+                          ),
+                        ),
                 ),
               ),
               // Container(
@@ -78,7 +107,15 @@ class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
               const SizedBox(
                 height: 50,
               ),
-              CustomFilledButton(title: 'Continue', onPressed: () {}),
+              CustomFilledButton(
+                  title: 'Continue',
+                  onPressed: () {
+                    if (validate()) {
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=> sig))
+                    } else {
+                      showCustomSnackbar(context, "KTP Tidak Boleh Kosong");
+                    }
+                  }),
             ],
           ),
         ),

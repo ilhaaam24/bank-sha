@@ -21,3 +21,6 @@ final class AuthFailed extends AuthState {
 }
 
 final class AuthCheckEmailSuccess extends AuthState {}
+
+
+
