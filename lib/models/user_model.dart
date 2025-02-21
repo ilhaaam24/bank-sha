@@ -2,8 +2,8 @@ class UserModel {
   final int? id;
   final String? name;
   final String? email;
-  final String? password;
   final String? username;
+  final String? password;
   final int? verified;
   final String? profilePicture;
   final int? balance;
@@ -15,8 +15,8 @@ class UserModel {
       {this.id,
       this.name,
       this.email,
-      this.password,
       this.username,
+      this.password,
       this.verified,
       this.profilePicture,
       this.balance,
@@ -28,8 +28,8 @@ class UserModel {
         id: json['id'],
         name: json['name'],
         email: json['email'],
-        password: json['password'],
         username: json['username'],
+        password: json['password'],
         verified: json['verified'],
         profilePicture: json['profile_picture'],
         balance: json['balance'],
@@ -39,16 +39,16 @@ class UserModel {
       );
 
   UserModel copyWith(
-          {String? name,
-          String? username,
+          {String? username,
+          String? name,
           String? email,
-          String? password,
           String? pin,
+          String? password,
           int? balance}) =>
       UserModel(
           id: id,
-          name: name ?? this.name,
           username: username ?? this.username,
+          name: name ?? this.name,
           email: email ?? this.email,
           password: password ?? this.password,
           pin: pin ?? this.pin,

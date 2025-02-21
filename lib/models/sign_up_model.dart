@@ -17,14 +17,14 @@ class SignUpFormModel {
 
   // mengubah file ke dalam bentuk json
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'email': email,
-      'password': password,
-      'pin': pin,
-      'profile_picture': profilePicture,
-      'ktp': ktp
-    };
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['email'] = email;
+    data['password'] = password;
+    data['pin'] = pin;
+    data['profilePicture'] = profilePicture;
+    data['ktp'] = ktp;
+    return data;
   }
 
   //  mempertahankan data yang lama dan menambahkan data baru yaitu pin, profilePicture, dan ktp
