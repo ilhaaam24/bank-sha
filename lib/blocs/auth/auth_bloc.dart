@@ -4,6 +4,7 @@ import 'package:bank_sha/models/user_edit_form_model.dart';
 import 'package:bank_sha/models/user_model.dart';
 import 'package:bank_sha/services/auth_services.dart';
 import 'package:bank_sha/services/user_services.dart';
+import 'package:bank_sha/services/wallet_services.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -72,6 +73,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                   email: event.data.email,
                   password: event.data.password,
                 );
+            emit(AuthLoading());
+
+            emit(AuthSuccess(updateUser));
+          }
+        } catch (e) {
+          emit(AuthFailed(e.toString()));
+        }
+      }
+      if (event is AuhtUpdatePin) {
+        try {
+          if (state is AuthSuccess) {
+            await WalletServices().updatePin(event.oldPin, event.newPin);
+            final updateUser =
+                (state as AuthSuccess).user.copyWith(pin: event.newPin);
             emit(AuthLoading());
 
             emit(AuthSuccess(updateUser));
