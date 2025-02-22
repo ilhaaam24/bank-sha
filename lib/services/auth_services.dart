@@ -79,7 +79,7 @@ class AuthServices {
       const storage = FlutterSecureStorage();
       Map<String, String> values = await storage.readAll();
 
-      if (values['email'] == null || values['password'] ==   null) {
+      if (values['email'] == null || values['password'] == null) {
         throw 'authenticated';
       } else {
         final SignInFormModel data = SignInFormModel(
@@ -102,5 +102,26 @@ class AuthServices {
       token = 'Bearer $value';
     }
     return token;
+  }
+
+  Future<void> clearLocalStorage() async {
+    const storage = FlutterSecureStorage();
+    await storage.deleteAll();
+  }
+
+  Future<void> logout() async {
+    try {
+      final token = await AuthServices().getToken();
+      final res = await http.post(Uri.parse('$baseUrl/logout'),
+          headers: {'authorization': token});
+
+      if (res.statusCode == 200) {
+        clearLocalStorage();
+      } else {
+        throw jsonDecode(res.body)['message'];
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }

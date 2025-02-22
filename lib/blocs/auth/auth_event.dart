@@ -52,3 +52,5 @@ class AuhtUpdatePin extends AuthEvent {
   // TODO: implement props
   List<Object> get props => [oldPin, newPin];
 }
+
+class AuhtLogout extends AuthEvent {}
