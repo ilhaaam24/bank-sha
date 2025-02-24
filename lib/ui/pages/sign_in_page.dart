@@ -31,6 +31,7 @@ class _SignInPageState extends State<SignInPage> {
         body: BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthFailed) {
+          print(state.e.toString());
           showCustomSnackbar(context, state.e);
         }
         if (state is AuthSuccess) {
@@ -107,6 +108,9 @@ class _SignInPageState extends State<SignInPage> {
                                       password: passwordController.text),
                                 ),
                               );
+                        } else {
+                          showCustomSnackbar(
+                              context, 'Email dan Password wajib diisi');
                         }
                       }),
                 ],
