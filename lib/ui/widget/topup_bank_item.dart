@@ -1,15 +1,15 @@
+import 'package:bank_sha/models/payment_method_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 class TopUpBankItem extends StatelessWidget {
-  final String bankName;
-  final String imageUrl;
-  final String time;
-  const TopUpBankItem(
-      {super.key,
-      required this.bankName,
-      required this.imageUrl,
-      required this.time});
+  final PaymentMethodModel paymentMethod;
+  final bool isSelected;
+  const TopUpBankItem({
+    super.key,
+    required this.paymentMethod,
+    this.isSelected = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,15 @@ class TopUpBankItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 18),
       padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 30),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: whiteColor),
+          border:
+              Border.all(color: isSelected ? blueColor : whiteColor, width: 2),
+          borderRadius: BorderRadius.circular(20),
+          color: whiteColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(
-            imageUrl,
+          Image.network(
+            paymentMethod.thumbnail.toString(),
             height: 30,
           ),
           Column(
@@ -31,7 +34,7 @@ class TopUpBankItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                bankName,
+                paymentMethod.name.toString(),
                 style:
                     blackTextStyle.copyWith(fontWeight: medium, fontSize: 16),
               ),
@@ -39,7 +42,7 @@ class TopUpBankItem extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                time,
+                '50 mins',
                 style: greyTextStyle.copyWith(fontSize: 12),
               )
             ],

@@ -75,18 +75,7 @@ class DataProviderPage extends StatelessWidget {
                 const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TopUpBankItem(
-                        bankName: 'Telkomsel',
-                        imageUrl: 'assets/img_provider_telkomsel.png',
-                        time: 'Available'),
-                    TopUpBankItem(
-                        bankName: 'Indosat Ooredoo',
-                        imageUrl: 'assets/img_provider_indosat.png',
-                        time: '50 mins'),
-                    TopUpBankItem(
-                        bankName: 'Singtel ID',
-                        imageUrl: 'assets/img_provider_singtel.png',
-                        time: '50 mins'),
+                    
                   ],
                 )
               ],
