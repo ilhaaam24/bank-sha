@@ -67,7 +67,6 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
     setState(() {
       amountController.text =
           amountController.text.substring(0, amountController.text.length - 1);
-
       if (amountController.text == '') {
         amountController.text = '0';
       }
@@ -85,9 +84,15 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
             if (state is TopupFailed) {
               showCustomSnackbar(context, state.e);
             }
-
             if (state is TopupSuccess) {
               await launchUrl(Uri.parse(state.directUrl));
+              
+              
+
+              context.read<AuthBloc>().add(
+                    AuthUpdateBalance(
+                      int.parse(amountController.text.replaceAll('.', '')),
+              ));
 
               Navigator.pushNamedAndRemoveUntil(
                 context,
