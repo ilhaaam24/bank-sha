@@ -1,12 +1,30 @@
+import 'package:bank_sha/blocs/user/user_bloc.dart';
+import 'package:bank_sha/models/user_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:bank_sha/ui/widget/forms.dart';
 import 'package:bank_sha/ui/widget/transfer_recent_item.dart';
 import 'package:bank_sha/ui/widget/transfer_result_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TransferPage extends StatelessWidget {
+class TransferPage extends StatefulWidget {
   const TransferPage({super.key});
+
+  @override
+  State<TransferPage> createState() => _TransferPageState();
+}
+
+class _TransferPageState extends State<TransferPage> {
+  final usernameController = TextEditingController();
+  UserModel? selectedUser;
+  late UserBloc userBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    userBloc = context.read<UserBloc>()..add(UserGetrecent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +51,24 @@ class TransferPage extends StatelessWidget {
                 const SizedBox(
                   height: 14,
                 ),
-                const CustomFormField(
+                CustomFormField(
                   title: 'by username',
                   isShowTitle: false,
+                  controller: usernameController,
+                  onFieldSubmitted: (value) {
+                    if (value.isNotEmpty) {
+                      userBloc.add(UserGetByUsername(value));
+                    } else {
+                      userBloc.add(UserGetrecent());
+                    }
+                    setState(() {});
+                  },
                 )
               ],
             ),
-            buildResultUsers(),
+            usernameController.text.isEmpty
+                ? buildRecentUsers()
+                : buildResultUsers(),
             const SizedBox(
               height: 274,
             ),
