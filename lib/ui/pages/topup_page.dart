@@ -123,11 +123,13 @@ class _TopupPageState extends State<TopupPage> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            if (selectedPaymentMethod != null)
-              CustomFilledButton(
+          ],
+        ),
+      ),
+      floatingActionButton: (selectedPaymentMethod != null)
+          ? Container(
+              margin: const EdgeInsets.all(24),
+              child: CustomFilledButton(
                 title: 'Continue',
                 onPressed: () {
                   Navigator.push(
@@ -141,12 +143,9 @@ class _TopupPageState extends State<TopupPage> {
                   );
                 },
               ),
-            const SizedBox(
-              height: 57,
             )
-          ],
-        ),
-      ),
+          : Container(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
