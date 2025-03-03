@@ -46,7 +46,7 @@ class TransferRecentItem extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                '@${user.username}',
+                '@${user.username!.split('@')[0]}',
                 style:
                     blackTextStyle.copyWith(fontWeight: medium, fontSize: 12),
               ),

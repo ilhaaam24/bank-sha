@@ -24,7 +24,7 @@ class TransactionService {
     }
   }
 
-  Future<Void> transfer(TransferFormModel data) async {
+  Future<void> transfer(TransferFormModel data) async {
     try {
       final token = await AuthServices().getToken();
       final res = await http.post(Uri.parse('$baseUrl/transfers'),
@@ -33,8 +33,6 @@ class TransactionService {
       if (res.statusCode != 200) {
         throw jsonDecode(res.body)['message'];
       }
-
-      throw jsonDecode(res.body)['message'];
     } catch (e) {
       rethrow;
     }
