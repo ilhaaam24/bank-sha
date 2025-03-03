@@ -86,7 +86,7 @@ class DataProviderPage extends StatelessWidget {
                 const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ProviderItem()
+                    // ProviderItem()
                   ],
                 )
               ],
