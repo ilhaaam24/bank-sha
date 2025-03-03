@@ -1,16 +1,13 @@
+import 'package:bank_sha/models/data_Plan_model.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 class PaketDataItem extends StatelessWidget {
-  final String kuota;
-  final int price;
+  final DataPlanModel dataPlan;
   final bool isSelected;
   const PaketDataItem(
-      {super.key,
-      required this.kuota,
-      required this.price,
-      this.isSelected = false});
+      {super.key, required this.dataPlan, this.isSelected = false});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +25,14 @@ class PaketDataItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            kuota,
+            dataPlan.name.toString(),
             style: blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 32),
           ),
           const SizedBox(
             height: 6,
           ),
           Text(
-            formatCurrency(price),
+            formatCurrency(dataPlan.price!),
             style: blackTextStyle.copyWith(fontWeight: medium, fontSize: 12),
           ),
         ],

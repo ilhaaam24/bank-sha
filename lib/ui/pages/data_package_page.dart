@@ -1,12 +1,22 @@
+import 'package:bank_sha/models/data_Plan_model.dart';
+import 'package:bank_sha/models/operator_card_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
 import 'package:bank_sha/ui/widget/forms.dart';
 import 'package:bank_sha/ui/widget/paket_data_item.dart';
 import 'package:flutter/material.dart';
 
-class DataPackagePage extends StatelessWidget {
-  const DataPackagePage({super.key});
+class DataPackagePage extends StatefulWidget {
+  final OperatorCardModel operatorCardModel;
+  const DataPackagePage({super.key, required this.operatorCardModel});
 
+  @override
+  State<DataPackagePage> createState() => _DataPackagePageState();
+}
+
+class _DataPackagePageState extends State<DataPackagePage> {
+  final phoneController = TextEditingController(text: '');
+  DataPlanModel? selectedDataPlan;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,9 +41,10 @@ class DataPackagePage extends StatelessWidget {
                 const SizedBox(
                   height: 14,
                 ),
-                const CustomFormField(
+                CustomFormField(
                   title: '+628',
                   isShowTitle: false,
+                  controller: phoneController,
                 )
               ],
             ),
@@ -51,43 +62,44 @@ class DataPackagePage extends StatelessWidget {
                 const SizedBox(
                   height: 14,
                 ),
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   child: Wrap(
-                    direction: Axis.horizontal,
-                    alignment: WrapAlignment.spaceBetween,
-                    runSpacing: 20,
-                    children: [
-                      PaketDataItem(
-                        kuota: '10GB',
-                        price: 218000,
-                        isSelected: true,
-                      ),
-                      PaketDataItem(kuota: '25GB', price: 420000),
-                      PaketDataItem(kuota: '40GB', price: 2500000),
-                      PaketDataItem(kuota: '99GB', price: 5000000),
-                    ],
-                  ),
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.spaceBetween,
+                      runSpacing: 20,
+                      children: widget.operatorCardModel.dataPlans!
+                          .map((dataplan) => GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedDataPlan = dataplan;
+                                });
+                              },
+                              child: PaketDataItem(
+                                dataPlan: dataplan,
+                                isSelected: selectedDataPlan?.id == dataplan.id,
+                              )))
+                          .toList()),
                 )
               ],
             ),
             const SizedBox(
               height: 200,
             ),
-            CustomFilledButton(
-                title: 'Continue',
-                onPressed: () async {
-                  if (await Navigator.pushNamed(context, '/pin') == true) {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/data-success', (route) => false);
-                  }
-                }),
-            const SizedBox(
-              height: 50,
-            ),
           ],
         ),
       ),
+      floatingActionButton:
+          (selectedDataPlan != null && phoneController.text.isNotEmpty)
+              ? Container(
+                  margin: const EdgeInsets.all(24),
+                  child: CustomFilledButton(
+                    title: 'Continue',
+                    onPressed: () {},
+                  ),
+                )
+              : Container(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
