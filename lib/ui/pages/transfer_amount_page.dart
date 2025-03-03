@@ -1,5 +1,5 @@
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
-import 'package:bank_sha/blocs/transfer/transfer_bloc.dart';
+import 'package:bank_sha/blocs/bloc/transfer_bloc.dart';
 import 'package:bank_sha/models/transfer_form_model.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';

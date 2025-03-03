@@ -27,8 +27,12 @@ class HomeUserItem extends StatelessWidget {
             margin: const EdgeInsets.only(bottom: 13),
             decoration: BoxDecoration(
               color: whiteColor,
+              shape: BoxShape.circle,
               image: DecorationImage(
-                  image: AssetImage(imageUrl), fit: BoxFit.cover),
+                  image: imageUrl == ''
+                      ? const AssetImage('assets/img_profile.png')
+                      : NetworkImage(imageUrl),
+                  fit: BoxFit.cover),
             ),
           ),
           Text('@$name',

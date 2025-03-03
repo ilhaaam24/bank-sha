@@ -1,4 +1,5 @@
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
+import 'package:bank_sha/blocs/user/user_bloc.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/home_service_item.dart';
@@ -358,16 +359,22 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             height: 14,
           ),
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                HomeUserItem(
-                    imageUrl: 'assets/img_friend1.png', name: 'yuanita'),
-                HomeUserItem(imageUrl: 'assets/img_friend2.png', name: 'jani'),
-                HomeUserItem(imageUrl: 'assets/img_friend3.png', name: 'urip'),
-                HomeUserItem(imageUrl: 'assets/img_friend4.png', name: 'masa'),
-              ],
+            child: BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                if (state is UserSuccess) {
+                  return Row(
+                    children: state.users
+                        .map((user) => HomeUserItem(
+                              name: user.name!.split(' ')[0],
+                              imageUrl: user.profilePicture!,
+                            ))
+                        .toList(),
+                  );
+                }
+                return const SizedBox();
+              },
             ),
           )
         ],
