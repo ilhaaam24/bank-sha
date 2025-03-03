@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:bank_sha/models/data_Plan_model.dart';
 import 'package:bank_sha/models/operator_card_model.dart';
 import 'package:bank_sha/services/auth_services.dart';
@@ -25,10 +24,10 @@ class OperatorCardService {
     }
   }
 
-  Future<List<DataPlanModel>> getDataPlan(
-      OperatorCardModel operatorCard) async {
-    try {} catch (e) {
-      rethrow;
-    }
-  }
+  // Future<List<DataPlanModel>> getDataPlan(
+  //     OperatorCardModel operatorCard) async {
+  //   try {} catch (e) {
+  //     rethrow;
+  //   }
+  // }
 }

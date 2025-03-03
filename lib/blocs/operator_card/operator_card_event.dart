@@ -7,4 +7,4 @@ sealed class OperatorCardEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OperatorCardGet {}
+class OperatorCardGet extends OperatorCardEvent {}

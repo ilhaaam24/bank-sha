@@ -1,13 +1,14 @@
+import 'package:bank_sha/models/operator_card_model.dart';
 import 'package:bank_sha/models/payment_method_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 class ProviderItem extends StatelessWidget {
-  final PaymentMethodModel paymentMethod;
+  final OperatorCardModel operatorCard;
   final bool isSelected;
   const ProviderItem({
     super.key,
-    required this.paymentMethod,
+    required this.operatorCard,
     this.isSelected = false,
   });
 
@@ -26,7 +27,7 @@ class ProviderItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.network(
-            paymentMethod.thumbnail.toString(),
+            operatorCard.thumbnail.toString(),
             height: 30,
           ),
           Column(
@@ -34,7 +35,7 @@ class ProviderItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                paymentMethod.name.toString(),
+                operatorCard.name.toString(),
                 style:
                     blackTextStyle.copyWith(fontWeight: medium, fontSize: 16),
               ),
@@ -42,7 +43,7 @@ class ProviderItem extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                '50 mins',
+                operatorCard.status.toString(),
                 style: greyTextStyle.copyWith(fontSize: 12),
               )
             ],
