@@ -1,19 +1,12 @@
+import 'package:bank_sha/models/user_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 
 class TransferRecentItem extends StatelessWidget {
-  final String name;
-  final String username;
-  final String imgUrl;
-
-  final bool isVeriefied;
-
+  final UserModel user;
+  final bool isSelected;
   const TransferRecentItem(
-      {super.key,
-      required this.name,
-      required this.username,
-      required this.imgUrl,
-      this.isVeriefied = false});
+      {super.key, required this.user, this.isSelected = false});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +25,11 @@ class TransferRecentItem extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage(imgUrl),
+                image: user.profilePicture == null
+                    ? const AssetImage('assets/img_profile.png')
+                    : NetworkImage(user.profilePicture!) as ImageProvider,
               ),
             ),
-            child: Image.asset(imgUrl),
           ),
           const SizedBox(
             width: 14,
@@ -44,7 +38,7 @@ class TransferRecentItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name,
+                user.name.toString(),
                 style:
                     blackTextStyle.copyWith(fontWeight: medium, fontSize: 16),
               ),
@@ -52,14 +46,14 @@ class TransferRecentItem extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                '@$username',
+                '@${user.username}',
                 style:
                     blackTextStyle.copyWith(fontWeight: medium, fontSize: 12),
               ),
             ],
           ),
           const Spacer(),
-          if (isVeriefied)
+          if (user.verified == 1)
             Row(children: [
               Image.asset('assets/ic_check.png', width: 16),
               const SizedBox(

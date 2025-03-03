@@ -59,6 +59,7 @@ class _TransferPageState extends State<TransferPage> {
                     if (value.isNotEmpty) {
                       userBloc.add(UserGetByUsername(value));
                     } else {
+                      selectedUser = null;
                       userBloc.add(UserGetrecent());
                     }
                     setState(() {});
@@ -72,63 +73,59 @@ class _TransferPageState extends State<TransferPage> {
             const SizedBox(
               height: 274,
             ),
-            CustomFilledButton(
-                title: 'Continue',
-                onPressed: () {
-                  Navigator.pushNamed(context, '/transfer-amount');
-                }),
-            const SizedBox(
-              height: 50,
-            ),
           ],
         ),
       ),
+      floatingActionButton: selectedUser == null
+          ? Container()
+          : Container(
+              margin: const EdgeInsets.all(24),
+              child: CustomFilledButton(
+                  title: 'Continue',
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/transfer-amount');
+                  }),
+            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
   Widget buildRecentUsers() {
     return Container(
-      margin: const EdgeInsets.only(top: 40),
-      child: Column(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Recent Users',
-                style:
-                    blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 16),
-              ),
-              const SizedBox(
-                height: 14,
-              ),
-              const Column(
-                children: [
-                  TransferRecentItem(
-                    name: 'Yonna Jie',
-                    username: 'yoenna',
-                    imgUrl: 'assets/img_friend1.png',
-                    isVeriefied: true,
-                  ),
-                  TransferRecentItem(
-                    name: 'John Hi',
-                    username: 'jhi',
-                    imgUrl: 'assets/img_friend2.png',
-                    isVeriefied: false,
-                  ),
-                  TransferRecentItem(
-                    name: 'Masayoshi',
-                    username: 'form',
-                    imgUrl: 'assets/img_friend3.png',
-                    isVeriefied: false,
-                  ),
-                ],
-              )
-            ],
-          )
-        ],
-      ),
-    );
+        margin: const EdgeInsets.only(top: 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Recent Users',
+              style:
+                  blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 16),
+            ),
+            const SizedBox(
+              height: 14,
+            ),
+            BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                if (state is UserSuccess) {
+                  return Column(
+                      children: state.users.map((user) {
+                    return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedUser = user;
+                          });
+                        },
+                        child: TransferRecentItem(
+                          user: user,
+                          isSelected: user.id == selectedUser?.id,
+                        ));
+                  }).toList());
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            )
+          ],
+        ));
   }
 
   Widget buildResultUsers() {
@@ -138,45 +135,37 @@ class _TransferPageState extends State<TransferPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Recent Users',
+            'Result Users',
             style: blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 16),
           ),
           const SizedBox(
             height: 14,
           ),
-          const SizedBox(
+          SizedBox(
             width: double.infinity,
-            child: Wrap(
-              direction: Axis.horizontal,
-              alignment: WrapAlignment.spaceBetween,
-              runSpacing: 20,
-              children: [
-                TransferResultItem(
-                  name: 'Yonna Jie',
-                  username: 'yoenna',
-                  imgUrl: 'assets/img_friend1.png',
-                  isVeriefied: true,
-                ),
-                TransferResultItem(
-                  name: 'Yonne Ka',
-                  username: 'yoenyu',
-                  imgUrl: 'assets/img_friend2.png',
-                  isVeriefied: true,
-                ),
-                TransferResultItem(
-                  name: 'Masayoshi',
-                  username: 'form',
-                  imgUrl: 'assets/img_friend3.png',
-                  isVeriefied: true,
-                ),
-                TransferResultItem(
-                  name: 'Yonna Jie',
-                  username: 'yoenna',
-                  imgUrl: 'assets/img_friend4.png',
-                  isVeriefied: true,
-                  isSelected: true,
-                ),
-              ],
+            child: BlocBuilder<UserBloc, UserState>(
+              builder: (context, state) {
+                if (state is UserSuccess) {
+                  return Wrap(
+                    direction: Axis.horizontal,
+                    alignment: WrapAlignment.spaceBetween,
+                    runSpacing: 20,
+                    children: state.users.map((user) {
+                      return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedUser = user;
+                            });
+                          },
+                          child: TransferResultItem(
+                            user: user,
+                            isSelected: user.id == selectedUser?.id,
+                          ));
+                    }).toList(),
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
             ),
           )
         ],
