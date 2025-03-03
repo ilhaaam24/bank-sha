@@ -1,7 +1,10 @@
+import 'package:bank_sha/blocs/auth/auth_bloc.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:bank_sha/ui/widget/buttons.dart';
+import 'package:bank_sha/ui/widget/provider_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DataProviderPage extends StatelessWidget {
   const DataProviderPage({super.key});
@@ -41,22 +44,31 @@ class DataProviderPage extends StatelessWidget {
                     const SizedBox(
                       width: 16,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '8008 2208 1996',
-                          style: blackTextStyle.copyWith(
-                              fontWeight: medium, fontSize: 16),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          'Balance: ${formatCurrency(18000000)}',
-                          style: greyTextStyle.copyWith(fontSize: 12),
-                        )
-                      ],
+                    BlocBuilder<AuthBloc, AuthState>(
+                      builder: (context, state) {
+                        if (state is AuthSuccess) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                state.user.cardNumber!.replaceAllMapped(
+                                    RegExp(r".{4}"),
+                                    (match) => "${match.group(0)}"),
+                                style: blackTextStyle.copyWith(
+                                    fontWeight: medium, fontSize: 16),
+                              ),
+                              const SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                'Balance: ${formatCurrency(state.user.balance ?? 0)}',
+                                style: greyTextStyle.copyWith(fontSize: 12),
+                              )
+                            ],
+                          );
+                        }
+                        return Container();
+                      },
                     )
                   ],
                 ),
@@ -74,7 +86,7 @@ class DataProviderPage extends StatelessWidget {
                 const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    
+                    ProviderItem()
                   ],
                 )
               ],
