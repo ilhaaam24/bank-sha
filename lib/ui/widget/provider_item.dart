@@ -1,5 +1,4 @@
 import 'package:bank_sha/models/operator_card_model.dart';
-import 'package:bank_sha/models/payment_method_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 

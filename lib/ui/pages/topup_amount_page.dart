@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
 import 'package:bank_sha/blocs/topup/topup_bloc.dart';
 import 'package:bank_sha/models/topup_form_model.dart';
@@ -86,13 +84,10 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
             }
             if (state is TopupSuccess) {
               await launchUrl(Uri.parse(state.directUrl));
-              
-              
 
-              context.read<AuthBloc>().add(
-                    AuthUpdateBalance(
-                      int.parse(amountController.text.replaceAll('.', '')),
-              ));
+              context.read<AuthBloc>().add(AuthUpdateBalance(
+                    int.parse(amountController.text.replaceAll('.', '')),
+                  ));
 
               Navigator.pushNamedAndRemoveUntil(
                 context,

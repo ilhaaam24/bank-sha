@@ -1,6 +1,6 @@
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
+import 'package:bank_sha/blocs/tip/tip_bloc.dart';
 import 'package:bank_sha/blocs/transaction/transaction_bloc.dart';
-import 'package:bank_sha/blocs/transfer/transfer_bloc.dart';
 import 'package:bank_sha/blocs/user/user_bloc.dart';
 import 'package:bank_sha/models/transfer_form_model.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
@@ -411,28 +411,26 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: const Wrap(
-                direction: Axis.horizontal,
-                alignment: WrapAlignment.spaceBetween,
-                runSpacing: 16,
-                children: [
-                  HomeTipsItem(
-                      imageUrl: 'assets/img_tips1.png',
-                      title: 'Best tips for using a credit card',
-                      url: ''),
-                  HomeTipsItem(
-                      imageUrl: 'assets/img_tips2.png',
-                      title: 'Spot the good pie of finance model',
-                      url: 'https://www.google.com/'),
-                  HomeTipsItem(
-                      imageUrl: 'assets/img_tips3.png',
-                      title: 'Great hack to get better advices',
-                      url: 'https://www.google.com/'),
-                  HomeTipsItem(
-                      imageUrl: 'assets/img_tips4.png',
-                      title: 'Save more penny buy this instead',
-                      url: 'https://www.google.com/'),
-                ]),
+            child: BlocProvider(
+              create: (context) => TipBloc()..add(GetTip()),
+              child: BlocBuilder<TipBloc, TipState>(
+                builder: (context, state) {
+                  if (state is TipSuccess) {
+                    return Wrap(
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.spaceBetween,
+                      runSpacing: 16,
+                      children: state.tips
+                          .map((tip) => HomeTipsItem(tip: tip))
+                          .toList(),
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
+            ),
           ),
         ],
       ),

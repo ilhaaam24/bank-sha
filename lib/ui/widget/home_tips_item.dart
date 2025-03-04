@@ -1,23 +1,17 @@
+import 'package:bank_sha/models/tip_model.dart';
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeTipsItem extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final String url;
-
-  const HomeTipsItem(
-      {super.key,
-      required this.imageUrl,
-      required this.title,
-      required this.url});
+  final TipModel tip;
+  const HomeTipsItem({super.key, required this.tip});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        final Uri uri = Uri.parse(url); // Konversi ke Uri
+        final Uri uri = Uri.parse(tip.url!); // Konversi ke Uri
 
         if (await canLaunchUrl(uri)) {
           // Gunakan canLaunchUrl
@@ -34,8 +28,8 @@ class HomeTipsItem extends StatelessWidget {
             ClipRRect(
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(20)),
-              child: Image.asset(
-                imageUrl,
+              child: Image.network(
+                tip.thumbnail!,
                 width: double.infinity,
                 height: 110,
                 fit: BoxFit.cover,
@@ -44,7 +38,7 @@ class HomeTipsItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               child: Text(
-                title,
+                tip.title.toString(),
                 style: blackTextStyle.copyWith(fontWeight: medium),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,

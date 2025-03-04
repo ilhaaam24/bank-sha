@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:bank_sha/models/payment_method_model.dart';
 import 'package:bank_sha/services/auth_services.dart';
-import 'package:bank_sha/services/user_services.dart';
 import 'package:bank_sha/shared/shared_values.dart';
 import 'package:http/http.dart' as http;
 
