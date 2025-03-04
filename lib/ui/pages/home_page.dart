@@ -1,8 +1,11 @@
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
 import 'package:bank_sha/blocs/transaction/transaction_bloc.dart';
+import 'package:bank_sha/blocs/transfer/transfer_bloc.dart';
 import 'package:bank_sha/blocs/user/user_bloc.dart';
+import 'package:bank_sha/models/transfer_form_model.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
+import 'package:bank_sha/ui/pages/transfer_amount_page.dart';
 import 'package:bank_sha/ui/widget/home_service_item.dart';
 import 'package:bank_sha/ui/widget/home_tips_item.dart';
 import 'package:bank_sha/ui/widget/home_transaction_item.dart';
@@ -10,8 +13,19 @@ import 'package:bank_sha/ui/widget/home_user_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserBloc>().add(UserGetrecent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -355,9 +369,20 @@ class HomePage extends StatelessWidget {
                 if (state is UserSuccess) {
                   return Row(
                     children: state.users
-                        .map((user) => HomeUserItem(
-                              name: user.name!.split(' ')[0],
-                              imageUrl: user.profilePicture!,
+                        .map((user) => GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            TransferAmountPage(
+                                                data: TransferFormModel(
+                                                    sendTo: user.username))));
+                              },
+                              child: HomeUserItem(
+                                name: user.name!.split(' ')[0],
+                                imageUrl: user.profilePicture!,
+                              ),
                             ))
                         .toList(),
                   );

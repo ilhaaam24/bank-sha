@@ -15,11 +15,22 @@ class HomeLatestTransactionItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 18),
       child: Row(
         children: [
-          Image.network(
-            transaction.transactionType!.thumbnail!,
-            height: 48,
-            width: 48,
-          ),
+          // Image.network(
+          //   transaction.transactionType!.thumbnail!,
+          //   height: 48,
+          //   width: 48,
+          // ),
+          Container(
+              width: 48,
+              height: 48,
+              margin: const EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: whiteColor,
+                  image: DecorationImage(
+                    image:
+                        NetworkImage(transaction.transactionType!.thumbnail!),
+                  ))),
           const SizedBox(
             width: 16,
           ),
