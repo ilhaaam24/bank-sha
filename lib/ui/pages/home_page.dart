@@ -1,4 +1,5 @@
 import 'package:bank_sha/blocs/auth/auth_bloc.dart';
+import 'package:bank_sha/blocs/transaction/transaction_bloc.dart';
 import 'package:bank_sha/blocs/user/user_bloc.dart';
 import 'package:bank_sha/shared/shared_methods.dart';
 import 'package:bank_sha/shared/theme.dart';
@@ -311,34 +312,22 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
                 color: whiteColor, borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              children: [
-                HomeLatestTransactionItem(
-                    title: 'Top Up',
-                    iconUrl: 'assets/ic_transaction_cat1.png',
-                    time: 'Yesterday',
-                    amount: '+ ${formatCurrency(450000, symbol: '')}'),
-                HomeLatestTransactionItem(
-                    title: 'Cashback',
-                    iconUrl: 'assets/ic_transaction_cat2.png',
-                    time: 'Sep 11',
-                    amount: '+ ${formatCurrency(22000, symbol: '')}'),
-                HomeLatestTransactionItem(
-                    title: 'Withdraw',
-                    iconUrl: 'assets/ic_transaction_cat3.png',
-                    time: 'Sep 2',
-                    amount: '- ${formatCurrency(5000, symbol: '')}'),
-                HomeLatestTransactionItem(
-                    title: 'Transfer',
-                    iconUrl: 'assets/ic_transaction_cat4.png',
-                    time: 'Aug 27',
-                    amount: '- ${formatCurrency(123500, symbol: '')}'),
-                HomeLatestTransactionItem(
-                    title: 'Electric',
-                    iconUrl: 'assets/ic_transaction_cat5.png',
-                    time: 'Feb 18',
-                    amount: '- ${formatCurrency(12300000, symbol: '')}'),
-              ],
+            child: BlocProvider(
+              create: (context) => TransactionBloc()..add(TransactionGet()),
+              child: BlocBuilder<TransactionBloc, TransactionState>(
+                builder: (context, state) {
+                  if (state is TransactionSuccess) {
+                    return Column(
+                        children: state.transactions
+                            .map((transaction) => HomeLatestTransactionItem(
+                                transaction: transaction))
+                            .toList());
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ),
           )
         ],
