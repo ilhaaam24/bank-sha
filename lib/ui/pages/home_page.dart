@@ -185,7 +185,7 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Shayna Hanna',
+                  '${state.user.name.toString()}',
                   style:
                       whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
                 ),
@@ -477,7 +477,7 @@ class MoreService extends StatelessWidget {
                   },
                 ),
                 HomeServiceItem(
-                  title: 'Data',
+                  title: 'Water',
                   iconUrl: 'assets/ic_product_water.png',
                   onTap: () {},
                 ),
