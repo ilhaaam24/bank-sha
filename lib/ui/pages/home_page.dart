@@ -108,6 +108,8 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         if (state is AuthSuccess) {
+          print(state.user.profilePicture);
+
           return Container(
             margin: const EdgeInsets.only(top: 50),
             child: Row(
@@ -330,16 +332,20 @@ class _HomePageState extends State<HomePage> {
               create: (context) => TransactionBloc()..add(TransactionGet()),
               child: BlocBuilder<TransactionBloc, TransactionState>(
                 builder: (context, state) {
+                  if (state is TransactionLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
                   if (state is TransactionSuccess) {
+                    print(state.transactions.toString());
                     return Column(
                         children: state.transactions
                             .map((transaction) => HomeLatestTransactionItem(
                                 transaction: transaction))
                             .toList());
                   }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return (Container());
                 },
               ),
             ),

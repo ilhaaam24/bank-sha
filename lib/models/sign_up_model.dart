@@ -22,7 +22,7 @@ class SignUpFormModel {
     data['email'] = email;
     data['password'] = password;
     data['pin'] = pin;
-    data['profilePicture'] = profilePicture;
+    data['profile_picture'] = profilePicture;
     data['ktp'] = ktp;
     return data;
   }

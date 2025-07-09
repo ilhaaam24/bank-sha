@@ -11,10 +11,10 @@ class AuthServices {
   Future<bool> checkEmail(String email) async {
     try {
       final res = await http
-          .post(Uri.parse('$baseUrl/is-email-exist'), body: {'email': email});
+          .post(Uri.parse('$baseUrl/is_email_exists'), body: {'email': email});
 
       if (res.statusCode == 200) {
-        return jsonDecode(res.body)['is_email_exist'];
+        return jsonDecode(res.body)['is_email_exists'];
       } else {
         return jsonDecode(res.body)['errors'];
       }
@@ -25,10 +25,9 @@ class AuthServices {
 
   Future<UserModel> register(SignUpFormModel data) async {
     try {
-      print(data.toJson());
       final res =
           await http.post(Uri.parse('$baseUrl/register'), body: data.toJson());
-
+      print(data.toJson());
       if (res.statusCode == 200) {
         UserModel user = UserModel.fromJson(jsonDecode(res.body));
         user = user.copyWith(password: data.password);

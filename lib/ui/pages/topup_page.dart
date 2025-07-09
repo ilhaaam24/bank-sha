@@ -98,6 +98,7 @@ class _TopupPageState extends State<TopupPage> {
                   child: BlocBuilder<PaymentMethodBloc, PaymentMethodState>(
                     builder: (context, state) {
                       if (state is PaymentMethodSuccess) {
+                        print('response${state.paymentMethods}');
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: state.paymentMethods

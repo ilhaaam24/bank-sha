@@ -12,6 +12,8 @@ class PaymentMethodService {
 
       final res = await http.get(Uri.parse('$baseUrl/payment_methods'),
           headers: {'Authorization': token});
+      print('STATUS: ${res.statusCode}');
+      print('BODY: ${res.body}');
 
       if (res.statusCode == 200) {
         return List<PaymentMethodModel>.from(jsonDecode(res.body).map(

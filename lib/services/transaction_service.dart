@@ -58,7 +58,6 @@ class TransactionService {
       final token = await AuthServices().getToken();
       final res = await http.get(Uri.parse('$baseUrl/transactions'),
           headers: {'Authorization': token});
-
       if (res.statusCode == 200) {
         return List<TransactionModel>.from(jsonDecode(res.body)['data']
                 .map((transaction) => TransactionModel.fromJson(transaction)))

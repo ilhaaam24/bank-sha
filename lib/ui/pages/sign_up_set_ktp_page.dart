@@ -144,6 +144,8 @@ class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
             CustomTextButton(
               title: 'Skip for Now',
               onPressed: () {
+                print('Data dari Front end : ${widget.data.toJson()}');
+
                 context.read<AuthBloc>().add(AuthRegister(widget.data.copyWith(
                       ktp: '',
                     )));
