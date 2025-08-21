@@ -27,7 +27,7 @@ class AuthServices {
     try {
       final res =
           await http.post(Uri.parse('$baseUrl/register'), body: data.toJson());
-      print(data.toJson());
+      print('Response from register ktp: ${data.toJson()}');
       if (res.statusCode == 200) {
         UserModel user = UserModel.fromJson(jsonDecode(res.body));
         user = user.copyWith(password: data.password);

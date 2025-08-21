@@ -13,8 +13,9 @@ class OperatorCardService {
           headers: {'Authorization': token});
 
       if (res.statusCode == 200) {
-        return List<OperatorCardModel>.from(jsonDecode(res.body)['data'].map(
-                (operatorCard) => OperatorCardModel.fromJson(operatorCard)))
+        return List<OperatorCardModel>.from(jsonDecode(res.body)['data']['data']
+                .map(
+                    (operatorCard) => OperatorCardModel.fromJson(operatorCard)))
             .toList();
       }
       throw jsonDecode(res.body)['message'];
@@ -22,11 +23,4 @@ class OperatorCardService {
       rethrow;
     }
   }
-
-  // Future<List<DataPlanModel>> getDataPlan(
-  //     OperatorCardModel operatorCard) async {
-  //   try {} catch (e) {
-  //     rethrow;
-  //   }
-  // }
 }

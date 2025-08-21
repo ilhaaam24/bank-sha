@@ -42,6 +42,13 @@ class _SignUpPageState extends State<SignUpPage> {
     return false;
   }
 
+  bool validatePasswordLength() {
+    if (passwordController.text.length < 8) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,6 +139,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         } else if (validatePassword()) {
                           showCustomSnackbar(
                               context, 'Password cannot be empty');
+                        } else if (validatePasswordLength()) {
+                          showCustomSnackbar(context,
+                              'Password must be at least 8 characters');
                         } else {
                           context
                               .read<AuthBloc>()

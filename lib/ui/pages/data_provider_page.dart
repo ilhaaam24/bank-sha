@@ -115,7 +115,17 @@ class _DataProviderPageState extends State<DataProviderPage> {
                               .toList(),
                         );
                       }
-                      return const Center(child: CircularProgressIndicator());
+                      if (state is OperatorCardFailed) {
+                        print(state.e.toString());
+                        return Center(
+                          child: Text(
+                            state.e.toString(),
+                            style: blackTextStyle.copyWith(
+                                fontSize: 16, fontWeight: semiBold),
+                          ),
+                        );
+                      }
+                      return Container();
                     },
                   ),
                 )

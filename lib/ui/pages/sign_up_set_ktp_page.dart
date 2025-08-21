@@ -35,13 +35,15 @@ class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
         body: BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthFailed) {
-          showCustomSnackbar(context, state.e);
           print(state.e.toString());
+          print('gagal sign up');
+          showCustomSnackbar(context, state.e);
         }
 
         if (state is AuthSuccess) {
           print(state.user.toString());
-          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/sign-up-success', (route) => false);
         }
       },
       builder: (context, state) {
@@ -123,14 +125,11 @@ class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
                       title: 'Continue',
                       onPressed: () {
                         if (validate()) {
-                          String base64Image = base64Encode(
-                              File(selectedImage!.path).readAsBytesSync());
-                          print(
-                              "Base64 Encoded Image: data:image/png;base64,$base64Image");
                           context.read<AuthBloc>().add(AuthRegister(widget.data
                               .copyWith(
-                                  ktp:
-                                      'data:image/png;base64,${base64Encode(File(selectedImage!.path).readAsBytesSync())}')));
+                                  ktp: selectedImage != null
+                                      ? 'data:image/png;base64,${base64Encode(File(selectedImage!.path).readAsBytesSync())}'
+                                      : '')));
                         } else {
                           showCustomSnackbar(context, "KTP Tidak Boleh Kosong");
                         }
@@ -144,8 +143,6 @@ class _SignUpSetKtpPageState extends State<SignUpSetKtpPage> {
             CustomTextButton(
               title: 'Skip for Now',
               onPressed: () {
-                print('Data dari Front end : ${widget.data.toJson()}');
-
                 context.read<AuthBloc>().add(AuthRegister(widget.data.copyWith(
                       ktp: '',
                     )));

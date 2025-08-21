@@ -133,6 +133,8 @@ class _TopupPageState extends State<TopupPage> {
               child: CustomFilledButton(
                 title: 'Continue',
                 onPressed: () {
+                  print(
+                      'Selected Payment Method: ${selectedPaymentMethod!.code}');
                   Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -236,6 +236,8 @@ class _TopupAmountPageState extends State<TopupAmountPage> {
 
                           context.read<TopupBloc>().add(TopupPost(widget.data
                               .copyWith(
+                                  paymentMethodCode:
+                                      widget.data.paymentMethodCode,
                                   pin: pin,
                                   amount: amountController.text
                                       .replaceAll('.', ''))));

@@ -15,8 +15,10 @@ class TransactionService {
       final res = await http.post(Uri.parse('$baseUrl/top_ups'),
           headers: {'authorization': token}, body: data.toJson());
 
+      print('Top Up Response: ${res.body}');
+
       if (res.statusCode == 200) {
-        return jsonDecode(res.body)['redirect_url'];
+        return jsonDecode(res.body)['data']['redirect_url'];
       }
 
       throw jsonDecode(res.body)['message'];
@@ -59,7 +61,7 @@ class TransactionService {
       final res = await http.get(Uri.parse('$baseUrl/transactions'),
           headers: {'Authorization': token});
       if (res.statusCode == 200) {
-        return List<TransactionModel>.from(jsonDecode(res.body)['data']
+        return List<TransactionModel>.from(jsonDecode(res.body)['data']['data']
                 .map((transaction) => TransactionModel.fromJson(transaction)))
             .toList();
       }
