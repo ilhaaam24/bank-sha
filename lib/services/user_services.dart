@@ -29,7 +29,7 @@ class UserService {
       });
 
       if (res.statusCode == 200) {
-        return List<UserModel>.from(jsonDecode(res.body)['data']
+        return List<UserModel>.from(jsonDecode(res.body)['data']['data']
             .map((user) => UserModel.fromJson(user))).toList();
       }
       throw jsonDecode(res.body)['message'];
@@ -47,9 +47,8 @@ class UserService {
       });
 
       if (res.statusCode == 200) {
-        return List<UserModel>.from(
-                jsonDecode(res.body).map((user) => UserModel.fromJson(user)))
-            .toList();
+        return List<UserModel>.from(jsonDecode(res.body)['data']
+            .map((user) => UserModel.fromJson(user))).toList();
       }
       throw jsonDecode(res.body)['message'];
     } catch (e) {
